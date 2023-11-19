@@ -61,7 +61,7 @@ tiempo_fin = time.time()
 tiempo_total = tiempo_fin - tiempo_inicio
 
 # Imprimir el resultado y el tiempo total
-print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos")
+print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos con numpy")
 
 @jit(nopython=True)
 def multiplicar_matrices(matriz1, matriz2):
@@ -94,7 +94,7 @@ tiempo_fin = time.time()
 tiempo_total = tiempo_fin - tiempo_inicio
 
 # Imprimir el resultado y el tiempo total
-print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos")
+print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos con funcion manual")
 
 def multiplicar_matrices(matriz1, matriz2):
     return np.array([[sum(int(buscar_resultado_multiplicacion(matriz1[i][k], matriz2[k][j])) for k in range(len(matriz2))) for j in range(len(matriz2[0]))] for i in range(len(matriz1))])
@@ -112,7 +112,7 @@ tiempo_fin = time.time()
 tiempo_total = tiempo_fin - tiempo_inicio
 
 # Imprimir el resultado y el tiempo total
-print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos")
+print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos con funcion manual y usos de busqueda")
 
 @jit(int32[:, :](), nopython=True)
 def generar_tablas_multiplicar():
@@ -161,7 +161,7 @@ tiempo_fin = time.time()
 tiempo_total = tiempo_fin - tiempo_inicio
 
 # Imprimir el resultado y el tiempo total
-print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos")
+print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos con numba y usos de busqueda")
 
 def generar_tablas_multiplicar():
     tablas_multiplicar = [[0] * 10 for _ in range(9)]
@@ -209,7 +209,7 @@ tiempo_fin = time.time()
 tiempo_total = tiempo_fin - tiempo_inicio
 
 # Imprimir el resultado y el tiempo total
-print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos")
+print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos con python y usos de busquedda")
 
 def generar_tablas_multiplicar():
     return [[i * j for j in range(1, 11)] for i in range(1, 10)]
@@ -244,7 +244,7 @@ tiempo_fin = time.time()
 tiempo_total = tiempo_fin - tiempo_inicio
 
 # Imprimir el resultado y el tiempo total
-print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos")
+print(f"Tiempo de ejecución: {tiempo_total:.16f} segundos python comprehensions y uso de busqueda")
 
 # import subprocess
 
