@@ -1,0 +1,8 @@
+cupy==12.3.0
+fastrlock==0.8.2
+llvmlite==0.42.0rc1
+numba==0.59.0rc1
+numpy==1.26.3
+psutil==5.9.7
+setuptools==69.0.3
+wheel==0.42.0
