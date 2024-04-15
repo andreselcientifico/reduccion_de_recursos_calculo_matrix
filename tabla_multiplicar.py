@@ -316,7 +316,7 @@ def generar_tablas_multiplicar():
     for i in range(1, 10):
         tablas_multiplicar[i-1, :] = np.arange(1, 11) * i
 
-    return tablas_multiplicar
+    return set(tablas_multiplicar)
 
 @jit(int32[:, :](int32[:, :], int32[:, :], int32[:, :]), nopython=True, parallel=True)
 def multiplicar_matrices(matriz1, matriz2, tablas_multiplicar):
@@ -661,14 +661,15 @@ def multiplicar_matrices(matriz1, matriz2, tablas_multiplicar):
 
     if columnas_matriz1 != filas_matriz2:
         raise ValueError("El número de columnas de la matriz1 debe ser igual al número de filas de la matriz2")
-
+    flattened = tablas_multiplicar.flatten()
     resultado = np.zeros((filas_matriz1, columnas_matriz2), dtype=np.int32)
-    flattened_tablas = tablas_multiplicar.flatten()
     for j in prange(columnas_matriz2):
         for i in range(filas_matriz1):
             for k in range(filas_matriz2):
-                resultado[i, j] += flattened_tablas[(matriz1[i, k] - 1) * tablas_multiplicar.shape[1] + (matriz2[k, j] - 1)]
+                resultado[i, j] += flattened[(matriz1[i, k] - 1) * tablas_multiplicar.shape[1] + (matriz2[k, j] - 1)]
     return resultado
+
+
 
 # Registrar el tiempo antes de la multiplicación
 tiempo_inicio = time.time()
